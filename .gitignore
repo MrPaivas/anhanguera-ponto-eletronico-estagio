@@ -131,7 +131,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
-
+faces_database
 # Spyder project settings
 .spyderproject
 .spyproject
