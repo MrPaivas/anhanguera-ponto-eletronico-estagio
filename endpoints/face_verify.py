@@ -22,7 +22,7 @@ async def verificacao_facial( matricula: str , db: Session = Depends(get_db), fo
     user = crud.crud.get_user_by_matricula(db, matricula)
     data_base_image = crud.crud.get_user_image_by_matricula(db, user.matricula)
     user_dir = await make_dir_estagiario(matricula)
-    foto_name = uuid.uuid3(uuid.NAMESPACE_DNS, user.matricula)
+    foto_name = uuid.uuid3(uuid.NAMESPACE_DNS, user.nome)
     file_path = f"{user_dir}/{foto_name}.jpg"
     
     foto_data = await foto.read()

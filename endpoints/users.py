@@ -14,7 +14,7 @@ from schemas.new_user_response import NewUserResponse
 router = APIRouter()
 
 
-@router.post("/novo-estagiario", response_model=schemas.Estagiarios)
+@router.post("/novo-estagiario")
 async def cadastrar_estagiario(novo_estagiario: NewUserResponse = Depends(),  db: Session = Depends(get_db)):
     db_user = crud.crud.get_user_by_matricula(db, novo_estagiario.matricula)
     if db_user:
@@ -36,7 +36,7 @@ async def cadastrar_estagiario(novo_estagiario: NewUserResponse = Depends(),  db
         'id_user': int(new_user.id)
     }
     crud.crud.save_image(db, schemas.ImagensCreate(**salva_img))
-    return new_user
+    return {"message": f"{new_user.nome} cadastrado com sucesso!"}
 
 
 
